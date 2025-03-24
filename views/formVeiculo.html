@@ -8,9 +8,9 @@
 <body>
     <h1>Form view</h1>
 
-    <form action="/veiculos/cadastro" method="get">
+    <form action="/veiculos/cadastro" method="post">
         <div>
-            <label for="modelo">Modelo</label>
+            <label for="modelo">modelo</label>
             <input type="text" id="modelo" name="modelo">
         </div>
         <div>
@@ -25,10 +25,7 @@
             <label for="ano">Ano</label>
             <input type="number" id="ano" name="ano" min="1886" max="2100">
         </div>
-        <div>
-            <label for="modelo">Modelo</label>
-            <input type="text" id="modelo">
-        </div>
+
         <input type="submit" value="Cadastrar"/>
     </form>
 </body>
