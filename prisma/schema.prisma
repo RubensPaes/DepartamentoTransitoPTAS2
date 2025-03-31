@@ -10,12 +10,12 @@ generator client {
 
 datasource db {
   provider = "sqlite"
-  url      = env("DATABASE_URL")
+  url = env("DATABASE_URL")
 }
 
 
 model Veiculo{
-  id  Int d @default(autoincrement())
+  id  Int @id @default(autoincrement())
   modelo String
   placa String
   cor String
