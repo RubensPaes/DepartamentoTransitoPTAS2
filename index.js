@@ -12,7 +12,8 @@ app.engine("handlebars", exphbs.engine())
 app.set("view engine", "handlebars")
 
 app.get("/", (req,res)=> {
-    res.send("Hello World!")
+    res.render("home")
+   // res.send("Hello World!")
 });
 
 
