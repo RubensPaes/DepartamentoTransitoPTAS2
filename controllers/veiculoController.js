@@ -20,7 +20,7 @@ class VeiculoController {
 
         }})
 
-        res.send({veiculo})
+        res.redirect("/veiculos/todos")
     }
 
     static async buscarTodos(req,res) {
