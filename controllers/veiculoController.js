@@ -20,10 +20,23 @@ class VeiculoController {
         });
     }
 
-    static async buscarTodos(req,res) {
-        const veiculos = await client.veiculo.findMany({});
+    static async buscar(req,res) {
+        const id = req.params.idVeiculo;
 
-        res.render("veiculos", {veiculos})
+        let veiculos;
+        if(id != null){
+            veiculos = await client.veiculo.findMany({
+                where: {
+                    id: parseInt(id),
+                },
+            })
+        } else {
+            veiculos = await client.veiculo.findMany({})
+        }
+
+        res.json({
+            veiculos,
+        })
     }
 };
 
