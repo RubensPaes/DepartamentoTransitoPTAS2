@@ -21,7 +21,7 @@ const veiculosRoutes = require("./routes/veiculoRoutes")
 app.use("/veiculos", veiculosRoutes)
 
 const UsuariosRoutes = require("./routes/UsuarioRoutes.js")
-app.use("/usuarios", usuarioRoutes)
+app.use("/usuarios", UsuariosRoutes)
 
 app.listen(8000, (err) => {
     console.log("aplicação rodandoem localhost:8000")
