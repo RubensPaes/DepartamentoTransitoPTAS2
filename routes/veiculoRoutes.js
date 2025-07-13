@@ -1,8 +1,9 @@
-const router = require("express").Router(); 
+const router = require("express").Router();
+const UsuarioController = require("../controllers/UsuarioController") 
 
 const VeiculoController = require("../controllers/veiculoController")
 
- router.post("/cadastro", VeiculoController.cadastrar);
+ router.post("/cadastro", UsuarioController.verificaAutenticacao,VeiculoController.cadastrar);
 
  router.get("/buscar/:id?", VeiculoController.buscar);
 
