@@ -21,7 +21,7 @@ class VeiculoController {
     }
 
     static async buscar(req,res) {
-        const id = req.params.idVeiculo;
+        const id = req.params.id;
 
         let veiculos;
         if(id != null){
