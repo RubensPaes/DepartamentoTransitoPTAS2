@@ -10,6 +10,19 @@ app.use(express.json());
 const exphbs = require("express-handlebars")
 app.engine("handlebars", exphbs.engine())
 app.set("view engine", "handlebars")
+const UsuarioController = require("./controllers/UsuarioController.js")
+
+app.get("/areaLogada", UsuarioController.verificaAutenticacao,(req,res) =>{
+    res.send({
+        msg: "Você está logado com o Id  " + req.usuarioId +  " e pode acessar este recurso.",
+    })
+})
+
+app.get("/areaAdmin", UsuarioController.verificaAutenticacao, UsuarioController.verificaIsAdmin,(req,res) =>{
+    res.send({
+        msg: "Você é um administrador"
+    })
+})
 
 app.get("/", (req,res)=> {
     res.render("home")

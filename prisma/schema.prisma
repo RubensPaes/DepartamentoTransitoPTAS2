@@ -27,6 +27,7 @@ model Usuario {
   nome String
   email String @unique
   senha String
+  IsAdmin Boolean @default(false)
 }
 
 

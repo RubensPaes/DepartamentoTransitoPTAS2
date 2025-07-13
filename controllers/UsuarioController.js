@@ -43,11 +43,58 @@ class UsuarioController{
       return res.josn({msg: "Senha Incorreta!"}) 
     }
     //emitir um token
-    const token = jwt.sign({id: usuario.id}, process.env.SENHA_SERVIDOR, {expiresIn: "1h"})
+    const token = jwt.sign({id: usuario.id}, process.env.SENHA_SERVIDOR, {expiresIn: "2h"})
     res.json({
       msg: "Autenticado!",
       token: token,
     });
+  }
+
+  static async verificaAutenticacao(req, res, next){
+    const authHeader = req.headers["authorization"]
+    if(authHeader){
+
+      const token = authHeader.split(" ")[1]
+
+      jwt.verify(token, process.env.SENHA_SERVIDOR, (err, payload) =>{
+        if (err){
+          return res.json({
+            msg:"token invalido!",
+          })
+        }
+
+        req.usuarioId = payload.id
+        next()
+      })
+
+    }else{
+     return res.json({
+      msg: "token não encontrado",
+    })
+  }
+  }
+
+  static async verificaIsAdmin(req, res, next){
+    if(!req.usuarioId){
+      return res.json({
+        msg: "você não está autenticado"
+      })
+    }
+
+    const usuario = await client.usuario.findUnique({
+      where: {
+        id: req.usuarioId
+      }
+    })
+
+    if(!usuario.IsAdmin){
+      return res.json({
+        msg: "Acesso negado, você não é um administrador"
+      })
+    }
+
+    next()
+
   }
 }
 
