@@ -5,6 +5,6 @@ const VeiculoController = require("../controllers/veiculoController")
 
  router.post("/cadastro", UsuarioController.verificaAutenticacao,VeiculoController.cadastrar);
 
- router.get("/buscar/:id?", VeiculoController.buscar);
+ router.get("/buscar/:id?", UsuarioController.verificaAutenticacao, UsuarioController.verificaIsAdmin,VeiculoController.buscar);
 
  module.exports = router;
